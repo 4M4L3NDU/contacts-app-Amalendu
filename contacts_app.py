@@ -108,7 +108,9 @@ def main():
         print("3. Search Contact")
         print("4. Update Contact")
         print("5. List Contacts")
-        print("6. Quit")
+        print("6. Sort Contacts")
+        print("7. Quit")
+
 
         choice = input("Enter choice: ")
 #Creates a ContactsManager Shows a menu repeatedly Asks user for an option
@@ -135,13 +137,15 @@ def main():
 
         elif choice == "5":
             manager.list_contacts()
-
+        
         elif choice == "6":
+            manager.sort_contacts()
+
+        elif choice == "7":
             print("Goodbye!")
             break
 
-        else:
-            print("Invalid choice, try again.")
+
 
 if __name__ == "__main__":
     main()
