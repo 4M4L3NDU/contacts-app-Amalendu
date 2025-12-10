@@ -58,6 +58,37 @@ class ContactsManager:
             print(contact)
 #lists out all existing contacts if contacts dont exist prints error
 
+def merge_sort(contact_list):
+    if len(contact_list) <= 1:
+        return contact_list
+
+    mid = len(contact_list) // 2
+    left = merge_sort(contact_list[:mid])
+    right = merge_sort(contact_list[mid:])
+
+    return merge(left, right)
+
+def merge(left, right):
+    sorted_list = []
+    i = 0
+    j = 0
+
+    # Compare left and right lists
+    while i < len(left) and j < len(right):
+        if left[i].name.lower() < right[j].name.lower():
+            sorted_list.append(left[i])
+            i += 1
+        else:
+            sorted_list.append(right[j])
+            j += 1
+
+    # Add remaining items
+    sorted_list.extend(left[i:])
+    sorted_list.extend(right[j:])
+
+    return sorted_list
+#Sorts a list of Contact objects Sorts by the .name attribute
+
 def main():
     manager = ContactsManager()
 
@@ -78,7 +109,7 @@ def main():
             phone = input("Phone: ")
             email = input("Email: ")
             manager.add_contact(name, phone, email)
-            
+
         elif choice == "2":
             name = input("Enter name to delete: ")
             manager.delete_contact(name)
