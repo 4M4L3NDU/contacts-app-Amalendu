@@ -57,3 +57,18 @@ class ContactsManager:
         for contact in self.contacts.values():
             print(contact)
 #lists out all existing contacts if contacts dont exist prints error
+
+def main():
+    manager = ContactsManager()
+
+    while True:
+        print("\n--- CONTACTS APP ---")
+        print("1. Add Contact")
+        print("2. Delete Contact")
+        print("3. Search Contact")
+        print("4. Update Contact")
+        print("5. List Contacts")
+        print("6. Quit")
+
+        choice = input("Enter choice: ")
+#Creates a ContactsManager Shows a menu repeatedly Asks user for an option
