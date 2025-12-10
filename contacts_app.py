@@ -28,3 +28,10 @@ class ContactsManager:
         else:
             print("Contact not found.")
 #Removes the contact from the hash table If the name doesn’t exist, shows an error
+
+    def search_contact(self, name):
+        if name in self.contacts:
+            print(self.contacts[name])
+        else:
+            print("Contact not found.")
+#Looks up the contact by name in the hash table Prints their information if found if not prints an error
