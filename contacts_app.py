@@ -49,6 +49,15 @@ class ContactsManager:
         print("Contact updated.")
 #Updates phone/email for an existing contact Only changes values you provide
 
+    def sort_contacts(self):
+        contact_list = list(self.contacts.values())
+        sorted_contacts = merge_sort(contact_list)
+
+        print("\n--- Sorted Contacts ---")
+        for contact in sorted_contacts:
+            print(contact)
+#Converts dictionary values into a list Sorts them using your merge sort
+
     def list_contacts(self):
         if not self.contacts:
             print("No contacts found.")
