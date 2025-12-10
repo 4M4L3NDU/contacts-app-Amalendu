@@ -48,3 +48,12 @@ class ContactsManager:
 
         print("Contact updated.")
 #Updates phone/email for an existing contact Only changes values you provide
+
+    def list_contacts(self):
+        if not self.contacts:
+            print("No contacts found.")
+            return
+
+        for contact in self.contacts.values():
+            print(contact)
+#lists out all existing contacts if contacts dont exist prints error
