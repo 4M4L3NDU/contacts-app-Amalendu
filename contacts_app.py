@@ -78,3 +78,30 @@ def main():
             phone = input("Phone: ")
             email = input("Email: ")
             manager.add_contact(name, phone, email)
+            
+        elif choice == "2":
+            name = input("Enter name to delete: ")
+            manager.delete_contact(name)
+
+        elif choice == "3":
+            name = input("Enter name to search: ")
+            manager.search_contact(name)
+
+        elif choice == "4":
+            name = input("Enter name to update: ")
+            phone = input("New phone (leave blank to keep current): ")
+            email = input("New email (leave blank to keep current): ")
+            manager.update_contact(name, phone or None, email or None)
+
+        elif choice == "5":
+            manager.list_contacts()
+
+        elif choice == "6":
+            print("Goodbye!")
+            break
+
+        else:
+            print("Invalid choice, try again.")
+
+if __name__ == "__main__":
+    main()
