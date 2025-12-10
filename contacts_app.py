@@ -35,3 +35,16 @@ class ContactsManager:
         else:
             print("Contact not found.")
 #Looks up the contact by name in the hash table Prints their information if found if not prints an error
+
+    def update_contact(self, name, phone=None, email=None):
+        if name not in self.contacts:
+            print("Contact not found.")
+            return
+
+        if phone:
+            self.contacts[name].phone = phone
+        if email:
+            self.contacts[name].email = email
+
+        print("Contact updated.")
+#Updates phone/email for an existing contact Only changes values you provide
