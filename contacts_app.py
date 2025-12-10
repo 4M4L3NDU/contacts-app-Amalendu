@@ -72,3 +72,9 @@ def main():
 
         choice = input("Enter choice: ")
 #Creates a ContactsManager Shows a menu repeatedly Asks user for an option
+
+        if choice == "1":
+            name = input("Name: ")
+            phone = input("Phone: ")
+            email = input("Email: ")
+            manager.add_contact(name, phone, email)
