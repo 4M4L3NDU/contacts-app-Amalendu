@@ -12,3 +12,11 @@ class ContactsManager:
     def __init__(self):
         self.contacts = {}
 #This class manages all your contacts using a hash table Creates an empty hash table called contacts. Keys = contact names, Values = Contact objects
+
+    def add_contact(self, name, phone, email):
+        if name in self.contacts:
+            print("Contact already exists.")
+            return
+        self.contacts[name] = Contact(name, phone, email)
+        print("Contact added successfully.")
+#Checks if the name already exists If not creates a new Contact and stores it in the hash table
