@@ -20,3 +20,11 @@ class ContactsManager:
         self.contacts[name] = Contact(name, phone, email)
         print("Contact added successfully.")
 #Checks if the name already exists If not creates a new Contact and stores it in the hash table
+
+    def delete_contact(self, name):
+        if name in self.contacts:
+            del self.contacts[name]
+            print("Contact deleted.")
+        else:
+            print("Contact not found.")
+#Removes the contact from the hash table If the name doesn’t exist, shows an error
