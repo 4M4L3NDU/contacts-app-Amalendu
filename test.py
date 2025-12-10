@@ -58,3 +58,13 @@ def test_large_dataset():
 
     # Sort tests merge sort performance
     manager.sort_contacts()  # Expect: prints sorted contacts
+
+if __name__ == "__main__":
+    test_empty_structure()
+    test_add_contact()
+    test_duplicate_contact()
+    test_delete_contact()
+    test_delete_nonexistent()
+    test_update_contact()
+    test_sort_contacts()
+    test_large_dataset()
