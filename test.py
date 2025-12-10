@@ -16,3 +16,11 @@ def test_duplicate_contact():
     print("\nTest Duplicate Contact:")
     manager.add_contact("dew", "111", "d@mail.com")
     manager.add_contact("dew", "222", "d@other.com")  # Expect: "Contact already exists."
+
+def test_delete_contact():
+    manager = ContactsManager()
+    print("\nTest Delete Contact:")
+    manager.add_contact("Cha", "33333", "cha@mail.com")
+    manager.delete_contact("Cha")
+    manager.search_contact("Cha")  # Expect: "Contact not found."
+
