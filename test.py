@@ -1,4 +1,6 @@
-from contacts_app import ContactsManager, Contact
+# test_contacts_app.py
+from contacts_app import ContactsManager, Contact, merge_sort
+
 
 def test_empty_structure():
     manager = ContactsManager()
@@ -53,11 +55,14 @@ def test_large_dataset():
     for i in range(1000):
         manager.add_contact(f"Person{i}", f"{i}", f"person{i}@mail.com")
 
-    # Search random element
-    manager.search_contact("Person500")  # Expect: found
+    # Only print ONE result, not all 1000
+    manager.search_contact("Person500")  # Should print just one contact
 
-    # Sort tests merge sort performance
-    manager.sort_contacts()  # Expect: prints sorted contacts
+    # Sort but only print FIRST 5 results to avoid flooding
+    sorted_list = merge_sort(list(manager.contacts.values()))
+    print("First 5 sorted contacts:")
+    for contact in sorted_list[:5]:
+        print(contact)
 
 if __name__ == "__main__":
     test_empty_structure()
