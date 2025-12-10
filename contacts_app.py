@@ -6,4 +6,9 @@ class Contact:
 
     def __str__(self):
         return f"Name: {self.name}, Phone: {self.phone}, Email: {self.email}"
-#Creates a template (a blueprint) for storing information about one person.
+#Creates a template for storing information about one person
+
+class ContactsManager:
+    def __init__(self):
+        self.contacts = {}
+#This class manages all your contacts using a hash table Creates an empty hash table called contacts. Keys = contact names, Values = Contact objects
