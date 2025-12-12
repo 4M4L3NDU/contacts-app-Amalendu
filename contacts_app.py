@@ -1,7 +1,3 @@
-import email
-from os import name
-
-
 class Contact:
     def __init__(self, name, phone, email):
         self.name = name
