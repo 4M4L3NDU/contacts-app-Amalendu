@@ -1,0 +1,96 @@
+from contacts_app import ContactsManager, Contact, merge_sort
+
+# Helper to print PASS/FAIL
+def result(name, passed):
+    status = "PASS" if passed else "FAIL"
+    print(f"{name}: {status}")
+
+# TEST 1 — Empty structure
+def test_empty_structure():
+    manager = ContactsManager()
+    return len(manager.contacts) == 0
+
+# TEST 2 — Add contact
+def test_add_contact():
+    manager = ContactsManager()
+    added = manager.add_contact("Alice", "123", "a@mail.com", silent=True)
+    return added and "Alice" in manager.contacts
+
+# TEST 3 — Duplicate contact
+def test_duplicate_contact():
+    manager = ContactsManager()
+    manager.add_contact("Bob", "111", "b@mail.com", silent=True)
+    added = manager.add_contact("Bob", "222", "bb@mail.com", silent=True)
+    return added is False
+
+# TEST 4 — Delete contact
+def test_delete_contact():
+    manager = ContactsManager()
+    manager.add_contact("Charlie", "333", "c@mail.com", silent=True)
+    manager.delete_contact("Charlie")
+    return "Charlie" not in manager.contacts
+
+# TEST 5 — Delete non-existent contact
+def test_delete_nonexistent():
+    manager = ContactsManager()
+    before = len(manager.contacts)
+    manager.delete_contact("Ghost")
+    after = len(manager.contacts)
+    return before == after
+
+# TEST 6 — Update contact
+def test_update_contact():
+    manager = ContactsManager()
+    manager.add_contact("Daisy", "444", "d@mail.com", silent=True)
+    manager.update_contact("Daisy", phone="999")
+    return manager.contacts["Daisy"].phone == "999"
+
+# TEST 7 — Sort contacts (merge sort)
+def test_sort_contacts():
+    manager = ContactsManager()
+    manager.add_contact("Charlie", "3", "c@mail.com", silent=True)
+    manager.add_contact("Alice", "1", "a@mail.com", silent=True)
+    manager.add_contact("Bob", "2", "b@mail.com", silent=True)
+
+    sorted_list = merge_sort(list(manager.contacts.values()))
+    sorted_names = [c.name for c in sorted_list]
+
+    return sorted_names == ["Alice", "Bob", "Charlie"]
+
+# TEST 8 — Large dataset (short output)
+def test_large_dataset():
+    manager = ContactsManager()
+    for i in range(1000):
+        manager.add_contact(f"Person{i}", f"{i}", f"p{i}@mail.com", silent=True)
+
+    exists = "Person500" in manager.contacts
+
+    sorted_list = merge_sort(list(manager.contacts.values()))
+    correct_first = sorted_list[0].name == "Person0"
+
+    return exists and correct_first
+
+# RUN ALL TESTS
+if __name__ == "__main__":
+    print("\n--- Running Tests ---\n")
+
+    tests = [
+        ("Test Empty Structure", test_empty_structure),
+        ("Test Add Contact", test_add_contact),
+        ("Test Duplicate Contact", test_duplicate_contact),
+        ("Test Delete Contact", test_delete_contact),
+        ("Test Delete Non-existent", test_delete_nonexistent),
+        ("Test Update Contact", test_update_contact),
+        ("Test Sort Contacts", test_sort_contacts),
+        ("Test Large Dataset", test_large_dataset),
+    ]
+
+    for name, test in tests:
+        passed = False
+        try:
+            passed = test()
+        except:
+            passed = False
+        result(name, passed)
+
+    print("\n--- Testing Complete ---\n")
