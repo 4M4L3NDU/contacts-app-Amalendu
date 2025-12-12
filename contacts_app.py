@@ -1,3 +1,7 @@
+import email
+from os import name
+
+
 class Contact:
     def __init__(self, name, phone, email):
         self.name = name
@@ -13,20 +17,28 @@ class ContactsManager:
         self.contacts = {}
 #This class manages all your contacts using a hash table Creates an empty hash table called contacts. Keys = contact names, Values = Contact objects
 
-    def add_contact(self, name, phone, email):
+    def add_contact(self, name, phone, email, silent=False):
         if name in self.contacts:
-            print("Contact already exists.")
-            return
+            if not silent:
+                print("Contact already exists.")
+            return False
+
         self.contacts[name] = Contact(name, phone, email)
-        print("Contact added successfully.")
+        if not silent:
+            print("Contact added successfully.")
+        return True
+
+
 #Checks if the name already exists If not creates a new Contact and stores it in the hash table
 
     def delete_contact(self, name):
         if name in self.contacts:
             del self.contacts[name]
             print("Contact deleted.")
+            return True
         else:
             print("Contact not found.")
+            return False
 #Removes the contact from the hash table If the name doesn’t exist, shows an error
 
     def search_contact(self, name):
@@ -39,7 +51,7 @@ class ContactsManager:
     def update_contact(self, name, phone=None, email=None):
         if name not in self.contacts:
             print("Contact not found.")
-            return
+            return False
 
         if phone:
             self.contacts[name].phone = phone
@@ -47,6 +59,7 @@ class ContactsManager:
             self.contacts[name].email = email
 
         print("Contact updated.")
+        return True             
 #Updates phone/email for an existing contact Only changes values you provide
 
     def sort_contacts(self):
